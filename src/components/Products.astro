@@ -1,0 +1,44 @@
+---
+import Card from "./Card.astro";
+import productsData from "../api/products.json";
+---
+
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="flex mb-12 justify-between">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                Productos para tu Gasolinera
+            </h2>
+            <p class="text-lg text-gray-600 max-w-96 mr-0 hidden md:block">
+                Encuentra todo el equipo y suministros que necesitas para
+                mantener tu gasolinera funcionando de manera eficiente.
+            </p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {
+                productsData.map((product) => (
+                    <Card
+                        title={product.title}
+                        price={product.price}
+                        image={product.image}
+                        rating={product.rating}
+                        href={`/product/${product.id}`}
+                        alt={product.description}
+                    />
+                ))
+            }
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-12">
+            <button
+                class="bg-ultramarine-600 hover:bg-ultramarine-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200"
+            >
+                Ver Todos los Productos
+            </button>
+        </div>
+    </div>
+</section>

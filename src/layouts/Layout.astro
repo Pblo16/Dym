@@ -1,3 +1,8 @@
+---
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -7,8 +12,23 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
-	<body>
+	<body class="bg-[#F1F4FF] text-white antialiased">
+		<Navigation />
 		<slot />
+
+		<script>
+			import { initFlowbite } from "flowbite";
+
+			// Initialize Flowbite when DOM is loaded
+			document.addEventListener("DOMContentLoaded", function () {
+				initFlowbite();
+			});
+
+			// Also initialize on navigation for Astro's client-side routing
+			document.addEventListener("astro:page-load", function () {
+				initFlowbite();
+			});
+		</script>
 	</body>
 </html>
 

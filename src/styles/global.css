@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+
+@theme {
+    --color-ultramarine-50: #f1f4ff;
+    --color-ultramarine-100: #e5e8ff;
+    --color-ultramarine-200: #ced5ff;
+    --color-ultramarine-300: #a7b0ff;
+    --color-ultramarine-400: #767dff;
+    --color-ultramarine-500: #3f3fff;
+    --color-ultramarine-600: #2518ff;
+    --color-ultramarine-700: #1407fa;
+    --color-ultramarine-800: #1005d2;
+    --color-ultramarine-900: #0f06ac;
+    --color-ultramarine-950: #02008c;    
+}

@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "title": "Bomba de Combustible Eléctrica 12V",
+        "price": 150.99,
+        "image": "https://static.wixstatic.com/media/f4a1fd_d1a810987d11474b9c0e0e33eab5f863~mv2.jpg/v1/fill/w_520,h_524,al_c,lg_1,q_80,enc_avif,quality_auto/f4a1fd_d1a810987d11474b9c0e0e33eab5f863~mv2.jpg",
+        "rating": 4.5,
+        "category": "Bombas",
+        "description": "Bomba de combustible eléctrica de alta presión para gasolineras"
+    },
+    {
+        "id": 2,
+        "title": "Dispensador de Gasolina Digital",
+        "price": 2599.00,
+        "image": "https://ermaldonado.mx/cdn/shop/products/ERM_JARRAPATRONDE20.0LTS.FABRICADAENACEROINOXIDABLE_VOLMEX_VOL-20-C_1024x1024.jpg?v=1616027253",
+        "rating": 4.8,
+        "category": "Dispensadores",
+        "description": "Dispensador digital con pantalla LCD y sistema de pago integrado"
+    },
+    {
+        "id": 3,
+        "title": "Manguera Flexible 3/4 pulgadas",
+        "price": 89.50,
+        "image": "https://via.placeholder.com/300x200?text=Manguera+Flexible",
+        "rating": 4.2,
+        "category": "Accesorios",
+        "description": "Manguera resistente a combustibles de 10 metros de longitud"
+    },
+    {
+        "id": 4,
+        "title": "Válvula de Seguridad Automática",
+        "price": 320.75,
+        "image": "https://via.placeholder.com/300x200?text=Valvula+Seguridad",
+        "rating": 4.7,
+        "category": "Seguridad",
+        "description": "Válvula de seguridad con cierre automático en caso de emergencia"
+    },
+    {
+        "id": 5,
+        "title": "Pistola de Combustible Automática",
+        "price": 125.00,
+        "image": "https://via.placeholder.com/300x200?text=Pistola+Automatica",
+        "rating": 4.4,
+        "category": "Accesorios",
+        "description": "Pistola con sistema de corte automático y agarre ergonómico"
+    },
+    {
+        "id": 6,
+        "title": "Tanque de Almacenamiento 5000L",
+        "price": 4500.00,
+        "image": "https://via.placeholder.com/300x200?text=Tanque+5000L",
+        "rating": 4.9,
+        "category": "Tanques",
+        "description": "Tanque subterráneo de doble pared con certificación ambiental"
+    }
+]
