@@ -1,0 +1,124 @@
+---
+import fetchApi from "@/lib/strapi";
+import type Product from "@/interfaces/product";
+import Layout from "@/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const products = await fetchApi<Product[]>({
+        endpoint: "products",
+        wrappedByKey: "data",
+        query: {
+            populate: "*",
+        },
+    });
+
+    return products.map((product) => ({
+        params: { : product.documentId },
+        props: { product },
+    }));
+}
+
+const { slug } = Astro.params;
+const { product } = Astro.props;
+
+
+---
+
+<Layout>
+    <main class="max-w-7xl mx-auto px-4 py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Imagen del producto -->
+            <div class="space-y-4">
+                {
+                    product.picture && product.picture.length > 0 && (
+                        <img
+                            src={
+                                import.meta.env.STRAPI_URL +
+                                product.picture[0].url
+                            }
+                            alt={
+                                product.picture[0].alternativeText ||
+                                product.name
+                            }
+                            class="w-full h-96 object-cover rounded-lg"
+                        />
+                    )
+                }
+
+                <!-- Galería de imágenes adicionales -->
+                {
+                    product.picture && product.picture.length > 1 && (
+                        <div class="grid grid-cols-4 gap-2">
+                            {product.picture.slice(1).map((img) => (
+                                <img
+                                    src={import.meta.env.STRAPI_URL + img.url}
+                                    alt={img.alternativeText || product.name}
+                                    class="w-full h-20 object-cover rounded-md cursor-pointer hover:opacity-80"
+                                />
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+
+            <!-- Información del producto -->
+            <div class="space-y-6">
+                <h1 class="text-3xl font-bold text-gray-900">
+                    {product.name}
+                </h1>
+
+                <div class="text-2xl font-semibold text-ultramarine-600">
+                    ${product.price}
+                </div>
+
+                <div class="space-y-2">
+                    
+                    <p class="text-sm text-gray-500">
+                        Publicado: {
+                            new Date(product.publishedAt).toLocaleDateString(
+                                "es-MX",
+                            )
+                        }
+                    </p>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="space-y-4">
+                    <button
+                        class="w-full bg-ultramarine-600 hover:bg-ultramarine-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+                    >
+                        Agregar al Carrito
+                    </button>
+
+                    <button
+                        class="w-full border border-ultramarine-600 text-ultramarine-600 hover:bg-ultramarine-50 font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+                    >
+                        Contactar Vendedor
+                    </button>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="border-t pt-6">
+                    <h3 class="text-lg font-semibold mb-4">Especificaciones</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        
+                        <div class="flex justify-between">
+                            <span>Disponibilidad:</span>
+                            <span class="text-green-600">En stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navegación -->
+        <div class="mt-8">
+            <a
+                href="/"
+                class="text-ultramarine-600 hover:text-ultramarine-700 font-medium"
+            >
+                ← Volver a productos
+            </a>
+        </div>
+    </main>
+</Layout>

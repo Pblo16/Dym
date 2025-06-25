@@ -1,9 +1,20 @@
 ---
-import Card from "./Card.astro";
-import productsData from "../api/products.json";
+import Card from "@/components/Card.astro";
+import fetchApi from "@/lib/strapi";
+import type Product from "@/interfaces/product";
+
+const productsData = await fetchApi<Product[]>({
+    endpoint: "products", // el tipo de contenido a obtener
+    wrappedByKey: "data", // la clave para descomponer la respuesta
+    query: {
+        populate: "*", // agregar populate para obtener las imágenes
+        "pagination[limit]": "4", // limitar los resultados a 5 productos
+        "sort[0]": "createdAt:asc", // ordenar por ID ascendente
+    },
+});
 ---
 
-<section class="py-16">
+<section class="mt-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
         <div class="flex mb-12 justify-between">
@@ -21,12 +32,11 @@ import productsData from "../api/products.json";
             {
                 productsData.map((product) => (
                     <Card
-                        title={product.title}
+                        title={product.name}
+                        image={product.picture?.[0]?.url}
                         price={product.price}
-                        image={product.image}
-                        rating={product.rating}
-                        href={`/product/${product.id}`}
-                        alt={product.description}
+                        alt={product.name}
+                        href={`/products/${product.documentId}`}
                     />
                 ))
             }

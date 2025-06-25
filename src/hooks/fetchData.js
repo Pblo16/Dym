@@ -32,11 +32,16 @@ export function fetchData(url) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
+    const baseUrl = import.meta.env.STRAPI_URL;
+
+
+    const urlComplete = baseUrl + url;
     try {
-        const promise = fetch(url, {
+        const promise = fetch(urlComplete, {
             signal: controller.signal,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${import.meta.env.STRAPI_TOKEN}`,
             },
         })
             .then((response) => {
